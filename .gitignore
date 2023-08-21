@@ -193,3 +193,5 @@ fabric.properties
 *.o
 *.so
 *.dylib
+
+.idea/
