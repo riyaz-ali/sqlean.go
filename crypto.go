@@ -3,11 +3,4 @@
 
 package sqlean
 
-// #cgo CFLAGS: -DSQLEAN_ENABLE_CRYPTO
-//
-// #include "sqlean.h"
-import "C"
-
-func init() {
-	register("crypto", func(c DatabaseConnection) error { return ret(C.crypto_init((*C.struct_sqlite3)(c))) })
-}
+import _ "github.com/riyaz-ali/sqlean.go/pkg/extensions/crypto"

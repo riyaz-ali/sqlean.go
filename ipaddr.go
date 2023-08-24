@@ -3,11 +3,4 @@
 
 package sqlean
 
-// #cgo CFLAGS: -DSQLEAN_ENABLE_IPADDR
-//
-// #include "sqlean.h"
-import "C"
-
-func init() {
-	register("ipaddr", func(c DatabaseConnection) error { return ret(C.ipaddr_init((*C.struct_sqlite3)(c))) })
-}
+import _ "github.com/riyaz-ali/sqlean.go/pkg/extensions/ipaddr"

@@ -1,3 +1,2 @@
-sqlean.{c,h} linguist-vendored
-sqlite3.h linguist-vendored
-sqlite3ext.h linguist-vendored
+pkg/extensions/**/*.c linguist-vendored
+pkg/extensions/**/*.h linguist-vendored

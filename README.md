@@ -5,8 +5,8 @@ popular [`mattn/go-sqlite3`](https://github.com/mattn/go-sqlite3) driver.
 
 ## Usage
 
-All sources from [a published release](https://github.com/nalgeon/sqlean/releases) are bundled into [`sqlean.c`](./sqlean.c)
-amalgamation file, using [`tools/amalgamate.go`](./tools/amalgamate.go), and vendored alongside the bindings. This makes
+All sources from [a published release](https://github.com/nalgeon/sqlean/releases) are added to
+[`pkg/extensions`](./pkg/extensions), and a bridge is generated using [`scripts/bridge.go`](./scripts/bridge.go), and vendored alongside the bindings. This makes
 the package `go get`-able, though you'd still need to enable `cgo` for compilation.
 
 ```shell
@@ -57,22 +57,25 @@ are enabled by default. To omit an extension, build with `-tags sqlean_omit_<nam
 - `crypto`: Hashing, encoding and decoding data
 - `define`: User-defined functions and dynamic SQL
 - `fileio`: Reading and writing files
+- `fuzzy`: Fuzzy string matching and phonetics
 - `ipaddr`: IP address manipulation
 - `math`: Math functions
+- `regexp`: Regular expressions
 - `stats`: Math statistics
 - `text`: String functions
 - `unicode`: Unicode support
 - `uuid`: Universally Unique IDentifiers
 - `vsv`: CSV files as virtual tables
 
-Newer extensions and / or versions are updated on best-effort basis. To generate new amalgamation source, run:
+Newer extensions and / or versions are updated on best-effort basis. To add new extension, run:
 
 ```shell
-go run tools/amalgamate.go --version <version>
+VERSION=<version> ./scripts/download.sh
+go run scripts/bridge.go --name <name> # name of the new extension
 ```
 
 ## Credits
 
-Code under amalgamation files - `sqlean.c` and `sqlean.h` - is generated from
+Code under `pkg/extensions` is generated from
 [source releases](https://github.com/nalgeon/sqlean/releases) and is licensed under MIT License.
 Check the original license and copyright at [`nalgeon/sqlean/LICENSE`](https://github.com/nalgeon/sqlean/blob/main/LICENSE)

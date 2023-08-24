@@ -74,7 +74,7 @@ func TestSqleanFileIO_ls(t *testing.T) {
 	//cwd, _ := os.Getwd()
 	rows, err := db.Query(query, ".")
 	if err != nil {
-		t.Errorf("query failed: %v", err)
+		t.Fatalf("query failed: %v", err)
 	}
 	defer rows.Close()
 
@@ -91,6 +91,18 @@ func TestSqleanFileIO_ls(t *testing.T) {
 	if err = rows.Err(); err != nil {
 		t.Errorf("rows.Err(): %v", err)
 	}
+}
+
+func TestSqleanFuzzy_levenshtein(t *testing.T) {
+	var db = Open(t, ":memory:")
+	defer db.Close()
+
+	var distance int
+	if err := db.QueryRow("select levenshtein(?, ?)", "awesome", "aewsme").Scan(&distance); err != nil {
+		t.Errorf("query failed: %v", err)
+	}
+
+	t.Logf("levenshtein(%q, %q) => %d", "awesome", "aewsme", distance)
 }
 
 func TestSqleanIpAddr_ipnetwork(t *testing.T) {

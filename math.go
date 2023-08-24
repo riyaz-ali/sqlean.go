@@ -3,11 +3,4 @@
 
 package sqlean
 
-// #cgo CFLAGS: -DSQLEAN_ENABLE_MATH
-//
-// #include "sqlean.h"
-import "C"
-
-func init() {
-	register("math", func(c DatabaseConnection) error { return ret(C.math_init((*C.struct_sqlite3)(c))) })
-}
+import _ "github.com/riyaz-ali/sqlean.go/pkg/extensions/math"

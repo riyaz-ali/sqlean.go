@@ -3,11 +3,4 @@
 
 package sqlean
 
-// #cgo CFLAGS: -DSQLEAN_ENABLE_UUID
-//
-// #include "sqlean.h"
-import "C"
-
-func init() {
-	register("uuid", func(c DatabaseConnection) error { return ret(C.uuid_init((*C.struct_sqlite3)(c))) })
-}
+import _ "github.com/riyaz-ali/sqlean.go/pkg/extensions/uuid"
