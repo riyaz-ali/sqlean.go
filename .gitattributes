@@ -1,3 +1,4 @@
-sqlean.{c,h} linguist-vendored
+sqlean.c linguist-vendored
+sqlean.h linguist-vendored
 sqlite3.h linguist-vendored
 sqlite3ext.h linguist-vendored
